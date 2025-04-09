@@ -1,3 +1,5 @@
+datasets
+pymongo
 pylint
 pyspark
 pandas
