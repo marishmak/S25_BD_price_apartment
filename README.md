@@ -1,4 +1,4 @@
-# Price of apartment predition in  Russia
+# Apartment price prediction in Russia
 ## S25 - Big Data
 ---
 ### Team 12 members:
