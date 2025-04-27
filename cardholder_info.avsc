@@ -1,0 +1,85 @@
+{
+  "type" : "record",
+  "name" : "cardholder_info",
+  "doc" : "Sqoop import of cardholder_info",
+  "fields" : [ {
+    "name" : "card_number",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "card_number",
+    "sqlType" : "2"
+  }, {
+    "name" : "first_name",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "first_name",
+    "sqlType" : "12"
+  }, {
+    "name" : "last_name",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "last_name",
+    "sqlType" : "12"
+  }, {
+    "name" : "gender",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "gender",
+    "sqlType" : "12"
+  }, {
+    "name" : "address_street",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "address_street",
+    "sqlType" : "12"
+  }, {
+    "name" : "address_city",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "address_city",
+    "sqlType" : "12"
+  }, {
+    "name" : "address_state",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "address_state",
+    "sqlType" : "12"
+  }, {
+    "name" : "address_state_zip",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "address_state_zip",
+    "sqlType" : "4"
+  }, {
+    "name" : "address_lat",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "address_lat",
+    "sqlType" : "8"
+  }, {
+    "name" : "address_long",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "address_long",
+    "sqlType" : "8"
+  }, {
+    "name" : "address_city_pop",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "address_city_pop",
+    "sqlType" : "4"
+  }, {
+    "name" : "job",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "job",
+    "sqlType" : "12"
+  }, {
+    "name" : "dob",
+    "type" : [ "null", "long" ],
+    "default" : null,
+    "columnName" : "dob",
+    "sqlType" : "91"
+  } ],
+  "tableName" : "cardholder_info"
+}

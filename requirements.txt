@@ -4,3 +4,5 @@ pylint
 pyspark
 pandas
 streamlit
+sqlalchemy
+psycopg2-binary

@@ -10,10 +10,6 @@ mkdir -p "$ROOT_DIR/data"
 source "$ROOT_DIR/venv/bin/activate"
 #pip install -r "$ROOT_DIR/requirements.txt"
 
-python3 - <<EOF
-from datasets import load_dataset
-dataset = load_dataset("daniilak/Russia_Real_Estate_2021", split="train")
-dataset.to_json("$ROOT_DIR/data/russia_real_estate.json", orient="records", lines=True)
-EOF
+curl -L -o ./data/Russia_Real_Estate_2021.csv https://huggingface.co/datasets/daniilak/Russia_Real_Estate_2021/resolve/main/data.csv
 
-echo "Russia Real Estate dataset downloaded to ./data/russia_real_estate.json"
+echo "Russia Real Estate dataset downloaded to ./data/Russia_Real_Estate_2021.csv"
