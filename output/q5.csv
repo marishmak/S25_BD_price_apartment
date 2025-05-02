@@ -1,0 +1,24 @@
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> -- the query q5
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> DROP TABLE IF EXISTS q5_results;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE q5_results(month INT, mean_price INT, properties INT)
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . . . . .> location 'user/team12/project/hive/warehouse/q5'; 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SET hive.resultset.use.unique.column.names = false;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> INSERT INTO q5_results
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT 
+. . . . . . . . . . . . . . . . . . . . . . .>     level,
+. . . . . . . . . . . . . . . . . . . . . . .>     COUNT(*) AS count_properties
+. . . . . . . . . . . . . . . . . . . . . . .> FROM real_estate
+. . . . . . . . . . . . . . . . . . . . . . .> WHERE level IS NOT NULL 
+. . . . . . . . . . . . . . . . . . . . . . .>   AND level BETWEEN 1 AND 25
+. . . . . . . . . . . . . . . . . . . . . . .> GROUP BY level
+. . . . . . . . . . . . . . . . . . . . . . .> ORDER BY level;

@@ -1,0 +1,70 @@
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> -- the query q1
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SELECT 
+. . . . . . . . . . . . . . . . . . . . . . .>     region,
+. . . . . . . . . . . . . . . . . . . . . . .>     SUM(price) AS total_price,
+. . . . . . . . . . . . . . . . . . . . . . .>     COUNT(*) AS property_count,
+. . . . . . . . . . . . . . . . . . . . . . .>     AVG(price) AS mean_price
+. . . . . . . . . . . . . . . . . . . . . . .> FROM real_estate_part
+. . . . . . . . . . . . . . . . . . . . . . .> WHERE region IS NOT NULL AND price IS NOT NULL
+. . . . . . . . . . . . . . . . . . . . . . .> GROUP BY region
+. . . . . . . . . . . . . . . . . . . . . . .> ORDER BY total_price DESC
+. . . . . . . . . . . . . . . . . . . . . . .> LIMIT 10;
++---------+----------------+-----------------+----------------------+
+| region  |  total_price   | property_count  |      mean_price      |
++---------+----------------+-----------------+----------------------+
+| 3       | 5774983879830  | 439511          | 1.313956619932152E7  |
+| 2661    | 3791438493731  | 461820          | 8209775.440065393    |
+| 9654    | 2952780644489  | 1049435         | 2813686.0734480936   |
+| 81      | 2382867859116  | 500368          | 4762230.716424711    |
+| 2843    | 2272702145698  | 637224          | 3566567.0873946995   |
+| 2922    | 827481903226   | 230545          | 3589242.4612375023   |
+| 6171    | 806978267582   | 237289          | 3400824.596091686    |
+| 3230    | 618648500027   | 222652          | 2778544.544971525    |
+| 3991    | 534702791530   | 141633          | 3775269.827864975    |
+| 2871    | 354930187701   | 101086          | 3511170.564677601    |
++---------+----------------+-----------------+----------------------+
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> DROP TABLE IF EXISTS q1_results;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE q1_results(region INT, total_price BIGINT, property_count INT, mean_price DECIMAL(10, 3))
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION '/user/team12/project/hive/warehouse/q1';
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SET hive.resultset.use.unique.column.names = false;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> INSERT INTO q1_results
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT 
+. . . . . . . . . . . . . . . . . . . . . . .>     region,
+. . . . . . . . . . . . . . . . . . . . . . .>     SUM(price) AS total_price,
+. . . . . . . . . . . . . . . . . . . . . . .>     COUNT(*) AS property_count,
+. . . . . . . . . . . . . . . . . . . . . . .>     AVG(price) AS mean_price
+. . . . . . . . . . . . . . . . . . . . . . .> FROM real_estate_part
+. . . . . . . . . . . . . . . . . . . . . . .> WHERE region IS NOT NULL AND price IS NOT NULL
+. . . . . . . . . . . . . . . . . . . . . . .> GROUP BY region
+. . . . . . . . . . . . . . . . . . . . . . .> ORDER BY total_price DESC
+. . . . . . . . . . . . . . . . . . . . . . .> LIMIT 10;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SELECT * FROM q1_results;
++---------+----------------+-----------------+--------------+
+| region  |  total_price   | property_count  |  mean_price  |
++---------+----------------+-----------------+--------------+
+| 3       | 5774983879830  | 439511          | NULL         |
+| 2661    | 3791438493731  | 461820          | 8209775.440  |
+| 9654    | 2952780644489  | 1049435         | 2813686.073  |
+| 81      | 2382867859116  | 500368          | 4762230.716  |
+| 2843    | 2272702145698  | 637224          | 3566567.087  |
+| 2922    | 827481903226   | 230545          | 3589242.461  |
+| 6171    | 806978267582   | 237289          | 3400824.596  |
+| 3230    | 618648500027   | 222652          | 2778544.545  |
+| 3991    | 534702791530   | 141633          | 3775269.828  |
+| 2871    | 354930187701   | 101086          | 3511170.565  |
++---------+----------------+-----------------+--------------+
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 

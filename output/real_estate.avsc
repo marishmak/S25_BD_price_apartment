@@ -1,0 +1,85 @@
+{
+  "type" : "record",
+  "name" : "real_estate",
+  "doc" : "Sqoop import of real_estate",
+  "fields" : [ {
+    "name" : "price",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "price",
+    "sqlType" : "4"
+  }, {
+    "name" : "date",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "date",
+    "sqlType" : "12"
+  }, {
+    "name" : "time",
+    "type" : [ "null", "string" ],
+    "default" : null,
+    "columnName" : "time",
+    "sqlType" : "12"
+  }, {
+    "name" : "geo_lat",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "geo_lat",
+    "sqlType" : "8"
+  }, {
+    "name" : "geo_lon",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "geo_lon",
+    "sqlType" : "8"
+  }, {
+    "name" : "region",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "region",
+    "sqlType" : "4"
+  }, {
+    "name" : "building_type",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "building_type",
+    "sqlType" : "4"
+  }, {
+    "name" : "level",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "level",
+    "sqlType" : "4"
+  }, {
+    "name" : "levels",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "levels",
+    "sqlType" : "4"
+  }, {
+    "name" : "rooms",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "rooms",
+    "sqlType" : "4"
+  }, {
+    "name" : "area",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "area",
+    "sqlType" : "8"
+  }, {
+    "name" : "kitchen_area",
+    "type" : [ "null", "double" ],
+    "default" : null,
+    "columnName" : "kitchen_area",
+    "sqlType" : "8"
+  }, {
+    "name" : "object_type",
+    "type" : [ "null", "int" ],
+    "default" : null,
+    "columnName" : "object_type",
+    "sqlType" : "4"
+  } ],
+  "tableName" : "real_estate"
+}
