@@ -14,6 +14,7 @@
 | show                   |
 | team0_projectdb        |
 | team11_projectdb       |
+| team12_db              |
 | team12_hive_projectdb  |
 | team13_projectdb       |
 | team14_projectdb       |
@@ -25,6 +26,8 @@
 | team1_projectdb        |
 | team20_projectdb       |
 | team21_projectdb       |
+| team21_projectdb_v2    |
+| team21_projectdb_v3    |
 | team22_projectdb       |
 | team23_projectdb       |
 | team24_projectdb       |
@@ -67,6 +70,7 @@
 | show                   |
 | team0_projectdb        |
 | team11_projectdb       |
+| team12_db              |
 | team12_hive_projectdb  |
 | team12_projectdb       |
 | team13_projectdb       |
@@ -79,6 +83,8 @@
 | team1_projectdb        |
 | team20_projectdb       |
 | team21_projectdb       |
+| team21_projectdb_v2    |
+| team21_projectdb_v3    |
 | team22_projectdb       |
 | team23_projectdb       |
 | team24_projectdb       |
@@ -107,7 +113,7 @@
 | testdb                 |
 +------------------------+
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
-0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE real_estate STORED AS AVRO LOCATION 'project/warehouse/real_estate' TBLPROPERTIES ('avro.schema.url' ='project/warehouse/avsc/real_estate.avsc');
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE real_estate STORED AS AVRO LOCATION 'project/warehouse/real_estate' TBLPROPERTIES ('avro.schema.url'=' project/warehouse/avsc/real_estate.avsc');
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SHOW TABLES;
 +--------------+
@@ -148,7 +154,7 @@
 . . . . . . . . . . . . . . . . . . . . . . .>     area DECIMAL(10, 2),
 . . . . . . . . . . . . . . . . . . . . . . .>     kitchen_area DECIMAL(10, 2),
 . . . . . . . . . . . . . . . . . . . . . . .>     object_type INT
-. . . . . . . . . . . . . . . . . . . . . . .> ) PARTITIONED BY (region INT) STORED AS AVRO LOCATION '/user/team12/project/hive/warehouse/real_estate_part' TBLPROPERTIES  ('AVRO.COMPRESS'='SNAPPY');
+. . . . . . . . . . . . . . . . . . . . . . .> ) PARTITIONED BY (region INT) STORED AS AVRO LOCATION '/user/team12/project/hive/warehouse/real_estate_part' TBLPROPERTIES ( 'AVRO.COMPRESS'='SNAPPY');
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE real_estate_buck (
@@ -164,7 +170,7 @@
 . . . . . . . . . . . . . . . . . . . . . . .>     rooms INT,
 . . . . . . . . . . . . . . . . . . . . . . .>     area DECIMAL(10, 2),
 . . . . . . . . . . . . . . . . . . . . . . .>     kitchen_area DECIMAL(10, 2)
-. . . . . . . . . . . . . . . . . . . . . . .> ) PARTITIONED BY (object_type INT) CLUSTERED BY (building_type) INTO 10 BUCKETS STORED AS AVRO LOCATION '/user/team12/proj ect/hive/warehouse/real_estate_bucketed' TBLPROPERTIES ('avro.output.codec'='snappy');
+. . . . . . . . . . . . . . . . . . . . . . .> ) PARTITIONED BY (object_type INT) CLUSTERED BY (building_type) INTO 10 BUCKETS STORED AS AVRO LOCATION '/user/team12/projec t/hive/warehouse/real_estate_bucketed' TBLPROPERTIES ('avro.output.codec'='snappy');
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
 0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> describe real_estate_part;
 +--------------------------+----------------+----------+

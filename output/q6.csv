@@ -1,0 +1,37 @@
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> -- the query q6
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> DROP TABLE IF EXISTS q6_results;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> CREATE EXTERNAL TABLE q6_results(rooms INT, mean_price INT, min_price INT, max_price INT, properties_count INT)
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . . . . .> location 'user/team12/project/hive/warehouse/q6'; 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> USE team12_projectdb;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SET hive.resultset.use.unique.column.names = false;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10>  
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> INSERT INTO q6_results
+. . . . . . . . . . . . . . . . . . . . . . .> SELECT 
+. . . . . . . . . . . . . . . . . . . . . . .>     rooms,
+. . . . . . . . . . . . . . . . . . . . . . .>     AVG(price) AS mean_price,
+. . . . . . . . . . . . . . . . . . . . . . .>     MIN(price) AS min_price,
+. . . . . . . . . . . . . . . . . . . . . . .>     MAX(price) AS max_price,
+. . . . . . . . . . . . . . . . . . . . . . .>     COUNT(*) AS properties_count
+. . . . . . . . . . . . . . . . . . . . . . .> FROM real_estate
+. . . . . . . . . . . . . . . . . . . . . . .> WHERE rooms BETWEEN 1 AND 5
+. . . . . . . . . . . . . . . . . . . . . . .> GROUP BY rooms
+. . . . . . . . . . . . . . . . . . . . . . .> ORDER BY rooms;
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> SELECT * FROM q6_results;
++--------+-------------+--------------+-------------+-------------------+
+| rooms  | mean_price  |  min_price   |  max_price  | properties_count  |
++--------+-------------+--------------+-------------+-------------------+
+| 1      | 3013116     | -2144967296  | 2147483647  | 2067013           |
+| 2      | 4483998     | -2114967296  | 2147483647  | 1827514           |
+| 3      | 5776525     | -2114150296  | 2089477704  | 1097354           |
+| 4      | 10776929    | -1794967296  | 1400065408  | 152160            |
+| 5      | 25844426    | 100          | 1096745000  | 22576             |
++--------+-------------+--------------+-------------+-------------------+
+0: jdbc:hive2://hadoop-03.uni.innopolis.ru:10> 
